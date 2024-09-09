@@ -3,4 +3,4 @@ Guess a Digimon, and if you correctly guess the level, attribute, field, type, c
 支持英文猜测，但结果只会显示中文  
 English guesses are supported, but the results will only be displayed in Chinese  
 数据来自数码兽数据库（digimons.net）  
-digimon data from http://digimons.net  
+Digimon data from http://digimons.net
