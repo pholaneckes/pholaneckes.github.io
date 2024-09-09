@@ -12,8 +12,8 @@ let _cn_ens_j = null;
 let _cn_ens_data = null;
 
 async function getRandomKey() {
-    const response = await fetch('_keys.json');
-    _cn_ens_j = await fetch('_cn_en.json');
+    const response = await fetch('keys.json');
+    _cn_ens_j = await fetch('cnen.json');
     _cn_ens_data = await _cn_ens_j.json();
     const data = await response.json();
     const keys = data.keys;
