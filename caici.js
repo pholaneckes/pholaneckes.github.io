@@ -95,7 +95,7 @@ async function getGs(dataInput) {
             ansElement.textContent = "答案：　　"+chn+"("+eng+")";
         }
         eeElement.textContent = "英语字母包含："+removeDuplicateLetters(getCommonLetters(g_eng.toLowerCase(),eng.toLowerCase()),eeElement.textContent.toLowerCase())
-        hzElement.textContent = "英语字母包含："+removeDuplicateLetters(getCommonLetters(g_chn,chn),hzElement.textContent)
+        hzElement.textContent = "中文汉字包含："+removeDuplicateLetters(getCommonLetters(g_chn,chn),hzElement.textContent)
         getXi(g_type, type);
         chulijieguo();
     }else {
@@ -126,6 +126,7 @@ async function chulijieguo(){
                 resultElement.textContent = '回答正确！';
                 resultElement.style.color = "green";
                 resultElement.style.fontSize = "32px";
+                tupian()
             }
         } else {
             resultElement.textContent = '回答错误，请再试一次！';
@@ -156,6 +157,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
         resultElement.style.color = "orange";
         resultElement.style.fontSize = "24px";
         ansElement.textContent = "答案：　　"+chn+"("+eng+")";
+        tupian()
         isTouxiang = true;
     }else if(!isTouxiang){
         getGs(userInput);
@@ -172,5 +174,15 @@ function abandon(){
     resultElement.style.color = "orange";
     resultElement.style.fontSize = "24px";
     ansElement.textContent = "答案：　　"+chn+"("+eng+")";
+    tupian()
     isTouxiang = true;
-};
+}
+
+function tupian() {
+    const resultElement = document.getElementById('result');
+
+    const img = document.createElement('img');
+    img.src = 'http://www.digimons.net/digimon/'+randomKey+'/'+randomKey+'.jpg';
+
+    resultElement.insertAdjacentElement('afterend', img);
+}
