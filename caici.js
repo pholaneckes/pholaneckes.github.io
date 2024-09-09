@@ -182,7 +182,7 @@ function tupian() {
     const resultElement = document.getElementById('result');
 
     const img = document.createElement('img');
-    img.src = 'http://www.digimons.net/digimon/'+randomKey+'/'+randomKey+'.jpg';
+    img.src = 'tupians/'+randomKey+'.jpg';
 
     resultElement.insertAdjacentElement('afterend', img);
 }
