@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机输入验证</title>
+    <link rel="stylesheet" type="text/css" href= "caiciyangshi.css">
+</head>
+<body>
+<h3>Digitizle!!数码宝贝猜兽游戏!!</h3>
+<h1>请猜测数码兽</h1>
+
+<form id="form">
+    <label for="userInput">请输入: </label>
+    <input type="text" id="userInput" required="" style="
+        height: 30px;
+        width: 300px;">
+    <button type="submit">提交</button>
+    <button type="button" onclick="abandon()">放弃</button>
+</form>
+
+<p id="result">结果：未开始猜测</p>
+<p id="level">等级：　　</p>
+<p id="attri">属性：　　</p>
+<p id="field">适应领域：</p>
+<p id="xi">分类系：　</p>
+<p id="type">类型：　　</p>
+<p id="wlen">单词长度：</p>
+<p id="hz">中文汉字包含：</p>
+<p id="ee">英语字母包含：</p>
+<p id="ans"></p>
+
+<div id="log"></div>
+
+<script src ="caici.js"></script>
+<script src ="logs.js"></script>
+<script src ="xi.js"></script>
+</body>
+</html>

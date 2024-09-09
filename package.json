@@ -1,0 +1,10 @@
+{
+  "name": "digitizle",
+  "version": "0.0.1",
+  "description": "digimon guess. \"digitize puzzle\"",
+  "main": "index.html",
+  "scripts": {
+    "test": "localhost:63342/Digitizle/index.html"
+  },
+  "private": true
+}
