@@ -13,7 +13,7 @@ const tianshiXi = ["小天使型", "天使型", "大天使型", "权天使型", 
 const qitaXi = ["两栖类型", "爬虫类型", "哺乳类型", "水栖型", "软体型", "突然变异型", "古代突然变异型", "合成型", "寄生型", "玩偶型", "完美型", "古代型", "入侵型", "小型", "软泥型", "食物型", "二流型", "主流型", "超主流型", "乐器型", "布朗型", "液晶薄型", "武器型", "防具型", "圣剑型", "银河型", "强化型", "特异型", "化生型", "邪神型", "恶魔龙型", "种族不明", "不明", "NO", "DATA", "解析不能", "9000型"]
 
 const Xis = [shouXi,niaoXi,yuJiaqiaoXi,kuncongXi,zhiwuXi,jixieXi,ziranXi,renxingXi,longXi,youlinYaojingXi,emoXi,tianshiXi,qitaXi]
-const XisC = ["兽系","鸟系","鱼甲壳系","昆虫系","植物系","机械系","人形系","龙系","幽灵妖精系","恶魔系","天使系","其他系"]
+const XisC = ["兽系","鸟系","鱼甲壳系","昆虫系","植物系","机械系",'自然系',"人形系","龙系","幽灵妖精系","恶魔系","天使系","其他系"]
 
 async function getXi(g_type,type){
     const xiElement = document.getElementById('xi');
