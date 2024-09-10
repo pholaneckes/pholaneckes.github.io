@@ -50,64 +50,69 @@ window.onload = () => {
 };
 
 async function getGs(dataInput) {
+    let cnEnsDatum = "";
     if(dataInput in _cn_ens_data){
         isDigimon = true;
-        let cnEnsDatum = _cn_ens_data[dataInput];
-        const digimon = await fetch('digimon_datas/' + cnEnsDatum + '.json');
-        const digimon_data = await digimon.json();
-        let digimon_datas = digimon_data[cnEnsDatum]
-        let g_level = digimon_datas.L;
-        let g_attri = digimon_datas.A;
-        let g_field = digimon_datas.F;
-        let g_type = digimon_datas.T;
-        let g_eng = digimon_datas.E;
-        let g_chn = digimon_datas.C;
-        addLog(g_chn + "(" + g_eng + ")" + ": " + g_level + "; " + g_attri + "; " + g_field + "; " + g_type)
-
-        const levelElement = document.getElementById('level');
-        const attriElement = document.getElementById('attri');
-        const fieldElement = document.getElementById('field');
-        const typeElement = document.getElementById('type');
-        const ansElement = document.getElementById('ans');
-        const eeElement = document.getElementById('ee');
-        const hzElement = document.getElementById('hz');
-
-        if(g_level === level) {
-            levelElement.textContent = "等级：　　"+ level;
-        }
-        if(g_attri === attri) {
-            attriElement.textContent = "属性：　　"+ attri;
-        }
-        if(g_field === field) {
-            fieldElement.textContent = "适应领域："+field;
-        }else{
-            let fields = field.split("、");
-            let gFields = g_field.split("、");
-            let fs = fields.filter(value => gFields.includes(value));
-            for(let i = 0; i < fs.length; i++) {
-                if(!fieldElement.textContent.includes(fs[i])) {
-                    fieldElement.textContent += "、";
-                    fieldElement.textContent += fs[i];
-                }
-            }
-            fieldElement.textContent = fieldElement.textContent.replace("适应领域：、","适应领域：")
-        }
-        if(g_type === type) {
-            typeElement.textContent = "类型：　　"+type;
-        }
-        if(g_eng === eng || g_chn === chn) {
-            ansElement.textContent = "答案：　　"+chn+"("+eng+")";
-        }
-        eeElement.textContent = "英语字母包含："+removeDuplicateLetters(getCommonLetters(g_eng.toLowerCase(),eng.toLowerCase()),eeElement.textContent.toLowerCase())
-        hzElement.textContent = "中文汉字包含："+removeDuplicateLetters(getCommonLetters(g_chn,chn),hzElement.textContent)
-        getXi(g_type, type);
-        chulijieguo();
-    }else {
+        cnEnsDatum = _cn_ens_data[dataInput];
+    }else if(response_data.keys.includes(dataInput.replace(" ","_").replace("-","_").replaceAll("[^a-zA-Z0-9_]","").replaceAll("__","_").toLowerCase())){
+        isDigimon = true;
+        cnEnsDatum = dataInput.replace(" ","_").replace("-","_").replaceAll("[^a-zA-Z0-9_]","").replaceAll("__","_").toLowerCase();
+    } else {
         const resultElement = document.getElementById('result');
         resultElement.textContent = '数码兽名称有误！！';
         resultElement.style.color = "yellow";
         resultElement.style.fontSize = "24px";
+        return;
     }
+    const digimon = await fetch('digimon_datas/' + cnEnsDatum + '.json');
+    const digimon_data = await digimon.json();
+    let digimon_datas = digimon_data[cnEnsDatum]
+    let g_level = digimon_datas.L;
+    let g_attri = digimon_datas.A;
+    let g_field = digimon_datas.F;
+    let g_type = digimon_datas.T;
+    let g_eng = digimon_datas.E;
+    let g_chn = digimon_datas.C;
+    addLog(g_chn + "(" + g_eng + ")" + ": " + g_level + "; " + g_attri + "; " + g_field + "; " + g_type)
+
+    const levelElement = document.getElementById('level');
+    const attriElement = document.getElementById('attri');
+    const fieldElement = document.getElementById('field');
+    const typeElement = document.getElementById('type');
+    const ansElement = document.getElementById('ans');
+    const eeElement = document.getElementById('ee');
+    const hzElement = document.getElementById('hz');
+
+    if(g_level === level) {
+        levelElement.textContent = "等级：　　"+ level;
+    }
+    if(g_attri === attri) {
+        attriElement.textContent = "属性：　　"+ attri;
+    }
+    if(g_field === field) {
+        fieldElement.textContent = "适应领域："+field;
+    }else{
+        let fields = field.split("、");
+        let gFields = g_field.split("、");
+        let fs = fields.filter(value => gFields.includes(value));
+        for(let i = 0; i < fs.length; i++) {
+            if(!fieldElement.textContent.includes(fs[i])) {
+                fieldElement.textContent += "、";
+                fieldElement.textContent += fs[i];
+            }
+        }
+        fieldElement.textContent = fieldElement.textContent.replace("适应领域：、","适应领域：")
+    }
+    if(g_type === type) {
+        typeElement.textContent = "类型：　　"+type;
+    }
+    if(g_eng === eng || g_chn === chn) {
+        ansElement.textContent = "答案：　　"+chn+"("+eng+")";
+    }
+    eeElement.textContent = "英语字母包含："+removeDuplicateLetters(getCommonLetters(g_eng.toLowerCase(),eng.toLowerCase()),eeElement.textContent.toLowerCase())
+    hzElement.textContent = "中文汉字包含："+removeDuplicateLetters(getCommonLetters(g_chn,chn),hzElement.textContent)
+    getXi(g_type, type);
+    chulijieguo();
 }
 
 function getCommonLetters(str1, str2) {
