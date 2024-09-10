@@ -22,7 +22,7 @@ async function getRandomKey() {
     response_data = await response.json();
     d_pics = await fetch('digimons_pics.json');
     d_pics_data = await d_pics.json();
-    const keys = data.keys;
+    const keys = response_data.keys;
     const randomIndex = Math.floor(Math.random() * keys.length);
     randomKey = keys[randomIndex];
     const digimon = await fetch('digimon_datas/'+randomKey+'.json');
