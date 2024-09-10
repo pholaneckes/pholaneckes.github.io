@@ -10,12 +10,16 @@ let isDigimon = false;
 let isTouxiang = false;
 let _cn_ens_j = null;
 let _cn_ens_data = null;
+let d_pics = null;
+let d_pics_data = null;
 
 async function getRandomKey() {
     const response = await fetch('keys.json');
     _cn_ens_j = await fetch('cnen.json');
     _cn_ens_data = await _cn_ens_j.json();
     const data = await response.json();
+    d_pics = await fetch('digimons_pics.json');
+    d_pics_data = await d_pics.json();
     const keys = data.keys;
     const randomIndex = Math.floor(Math.random() * keys.length);
     randomKey = keys[randomIndex];
@@ -181,8 +185,14 @@ function abandon(){
 function tupian() {
     const resultElement = document.getElementById('result');
 
+    let s1 = "";
+    if(randomKey in d_pics_data) {
+        s1 = d_pics_data[randomKey];
+    }else {
+        s1 = randomKey;
+    }
     const img = document.createElement('img');
-    img.src = 'tupians/'+randomKey+'.jpg';
+    img.src = 'tupians/'+s1+'.jpg';
 
     resultElement.insertAdjacentElement('afterend', img);
 }
