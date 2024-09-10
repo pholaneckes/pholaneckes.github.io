@@ -1,4 +1,3 @@
-// 从_keys.json随机选取一项
 let randomKey = '';
 let level = '';
 let attri = '';
@@ -74,6 +73,7 @@ window.onload = () => {
         q2dElement.textContent = '切换仅采用前二代数码兽';
         lidaiElement.textContent = '切换采用全部数码兽';
     }
+    // 从_keys.json随机选取一项
     getRandomKey();
 };
 
