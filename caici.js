@@ -248,19 +248,13 @@ function tupian() {
 
     const img = document.createElement('img');
     let s1 = "";
-    let s2 = "";
     if(randomKey in d_pics_data) {
         s1 = d_pics_data[randomKey];
     }else {
         s1 = randomKey;
     }
-    if(randomKey in d_rs_data) {
-        s2 = d_rs_data[randomKey];
-    }else {
-        s2 = randomKey;
-    }
 
-    img.src = 'http://www.digimons.net/digimon/' + s2 + '/' + s1 + '.jpg';
+    img.src = '/tupians/' + s1 + '.jpg';
 
     resultElement.insertAdjacentElement('afterend', img);
 }
