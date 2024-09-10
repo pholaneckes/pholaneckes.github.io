@@ -24,9 +24,9 @@ async function getRandomKey() {
     }else if(qian2dai === "2") {
         response = await fetch('lidai.json');
     } else{
-        response = await fetch('_keys.json');
+        response = await fetch('keys.json');
     }
-    _cn_ens_j = await fetch('_cn_en.json');
+    _cn_ens_j = await fetch('cnen.json');
     _cn_ens_data = await _cn_ens_j.json();
     d_pics = await fetch('digimons_pics.json');
     d_pics_data = await d_pics.json();
