@@ -12,12 +12,14 @@ let _cn_ens_j = null;
 let _cn_ens_data = null;
 let d_pics = null;
 let d_pics_data = null;
+let response = null;
+let response_data = null;
 
 async function getRandomKey() {
-    const response = await fetch('keys.json');
+    response = await fetch('keys.json');
     _cn_ens_j = await fetch('cnen.json');
     _cn_ens_data = await _cn_ens_j.json();
-    const data = await response.json();
+    response_data = await response.json();
     d_pics = await fetch('digimons_pics.json');
     d_pics_data = await d_pics.json();
     const keys = data.keys;
