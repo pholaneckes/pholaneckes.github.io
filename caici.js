@@ -12,16 +12,27 @@ let _cn_ens_j = null;
 let _cn_ens_data = null;
 let d_pics = null;
 let d_pics_data = null;
+let d_rs = null;
+let d_rs_data = null;
 let response = null;
 let response_data = null;
+let qian2dai = "0";
 
 async function getRandomKey() {
-    response = await fetch('keys.json');
-    _cn_ens_j = await fetch('cnen.json');
+    if(qian2dai === "1"){
+        response = await fetch('qian2dai.json');
+    }else if(qian2dai === "2") {
+        response = await fetch('lidai.json');
+    } else{
+        response = await fetch('_keys.json');
+    }
+    _cn_ens_j = await fetch('_cn_en.json');
     _cn_ens_data = await _cn_ens_j.json();
-    response_data = await response.json();
     d_pics = await fetch('digimons_pics.json');
     d_pics_data = await d_pics.json();
+    d_rs = await fetch('digimons_rs.json');
+    d_rs_data = await d_rs.json();
+    response_data = await response.json();
     const keys = response_data.keys;
     const randomIndex = Math.floor(Math.random() * keys.length);
     randomKey = keys[randomIndex];
@@ -46,10 +57,53 @@ async function getRandomKey() {
     console.log('数码兽中文:', chn);
 }
 
-// 页面加载时获取随机项
 window.onload = () => {
+    const params = new URLSearchParams(window.location.search);
+    qian2dai = params.get('qian2dai');
+    const q2dElement = document.getElementById('q2d');
+    const lidaiElement = document.getElementById('lidai');
+    if(qian2dai === "1" || qian2dai === null){
+        q2dElement.textContent = '切换采用全部数码兽';
+        lidaiElement.textContent = '切换仅采用历代主角团中的数码兽';
+    }
+    if(qian2dai === "0"){
+        q2dElement.textContent = '切换仅采用前二代数码兽';
+        lidaiElement.textContent = '切换仅采用历代主角团中的数码兽';
+    }
+    if(qian2dai === "2"){
+        q2dElement.textContent = '切换仅采用前二代数码兽';
+        lidaiElement.textContent = '切换采用全部数码兽';
+    }
     getRandomKey();
 };
+
+function qiehuan(){
+    const params = new URLSearchParams(window.location.search);
+    let q2d = params.get('qian2dai');
+    if(q2d === "1" || q2d === null){
+        window.location.href = '?qian2dai=0'
+    }
+    if(q2d === "0"){
+        window.location.href = '?qian2dai=1'
+    }
+    if(q2d === "2"){
+        window.location.href = '?qian2dai=1'
+    }
+}
+
+function qiehuan2(){
+    const params = new URLSearchParams(window.location.search);
+    let q2d = params.get('qian2dai');
+    if(q2d === "1" || q2d === null){
+        window.location.href = '?qian2dai=2'
+    }
+    if(q2d === "0"){
+        window.location.href = '?qian2dai=2'
+    }
+    if(q2d === "2"){
+        window.location.href = '?qian2dai=0'
+    }
+}
 
 async function getGs(dataInput) {
     let cnEnsDatum = "";
@@ -153,7 +207,7 @@ async function chulijieguo(){
 }
 
 document.getElementById('form').addEventListener('submit', function(event) {
-    event.preventDefault();  // 防止表单自动提交
+    event.preventDefault();  // 防自动提交
     const userInput = document.getElementById('userInput').value;
     const wlenElement = document.getElementById('wlen');
     const resultElement = document.getElementById('result');
@@ -192,14 +246,21 @@ function abandon(){
 function tupian() {
     const resultElement = document.getElementById('result');
 
+    const img = document.createElement('img');
     let s1 = "";
+    let s2 = "";
     if(randomKey in d_pics_data) {
         s1 = d_pics_data[randomKey];
     }else {
         s1 = randomKey;
     }
-    const img = document.createElement('img');
-    img.src = 'tupians/'+s1+'.jpg';
+    if(randomKey in d_rs_data) {
+        s2 = d_rs_data[randomKey];
+    }else {
+        s2 = randomKey;
+    }
+
+    img.src = 'http://www.digimons.net/digimon/' + s2 + '/' + s1 + '.jpg';
 
     resultElement.insertAdjacentElement('afterend', img);
 }

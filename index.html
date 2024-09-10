@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机输入验证</title>
+    <title>!Digimon Puzzle!</title>
     <link rel="stylesheet" type="text/css" href= "caiciyangshi.css">
 </head>
 <body>
 <h3>Digitizle!!数码宝贝猜兽游戏!!</h3>
-<h1>请猜测数码兽</h1>
+<div class="header-container">
+    <h1>请猜测数码兽</h1>
+    <button id="q2d" type="button" onclick="qiehuan()" class="q2d">切换仅采用前二代数码兽</button>
+    <button id="lidai" type="button" onclick="qiehuan2()" class="q2d">切换仅采用历代主角团中的数码兽</button>
+</div>
 
 <form id="form">
     <label for="userInput">请输入: </label>

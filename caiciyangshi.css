@@ -6,3 +6,16 @@
     white-space: pre-wrap;
     font-family: monospace;
 }
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-container .q2d {
+    text-decoration: none;
+    background-color: wheat;
+    color: orange;
+    padding: 5px 5px;
+    border-radius: 5px;
+}
